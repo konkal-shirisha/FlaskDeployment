@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Recommendation System</h1>
+    </header>
+    <main>
+        <form id="recommendationForm">
+            <label for="inputType">Choose Recommendation Type:</label>
+            <select id="inputType" name="inputType">
+                <option value="user">User-to-User</option>
+                <option value="product">Product-to-Product</option>
+            </select>
+            <br><br>
+            <label for="inputId">Enter ID:</label>
+            <input type="text" id="inputId" name="inputId" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <div id="recommendations">
+            <!-- Recommendations will be displayed here -->
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
