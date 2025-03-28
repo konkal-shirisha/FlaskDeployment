@@ -1,8 +1,21 @@
-"import joblib\n",     
-"import numpy as np\n",     
-"app = Flask(__name__)\n",     
-"model = joblib.load('iris_model.pkl')\n",     
-"model = joblib.load('Product_Ratings_Dataset.xls')\n",     
-"@app.route('/')\n",     
-"def home():\n",     
-"return render_template('home.html')\n", 
+from flask import Flask, render_template, request
+import joblib
+import numpy as np
+app = Flask(__name__)
+model = joblib.load('Product_Ratings_Dataset.xls')
+@app.route('/')
+def home():
+    return render_template('home.html')
+    
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        features = [float(request.form[f'feature{i}']) for i in range(1,5)]
+    except ValueError:
+        return render_template('result.html',prediction="Invalid input. Please enter numeric values.")
+    prediction = model.predict([features])[0]
+    class_name = ['Setosa','Versicolor','Virginica']
+    result = class_name[prediction]
+    return render_template('result.html', prediction = result)
+if __name__=='__main__':
+    app.run(debug=True)
